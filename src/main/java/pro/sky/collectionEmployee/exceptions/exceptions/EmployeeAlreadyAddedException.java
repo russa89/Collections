@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class EmployeeAlreadyAddedException extends RuntimeException {
-    public EmployeeAlreadyAddedException() {
-        super("Employee Already Added");
+    public EmployeeAlreadyAddedException(String message) {
+        super(message);
     }
 }
