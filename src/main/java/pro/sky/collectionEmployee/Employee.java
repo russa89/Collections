@@ -1,9 +1,13 @@
 package pro.sky.collectionEmployee;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Employee {
+    @JsonProperty
     private String firstName;
+    @JsonProperty
     private String lastName;
 
     public Employee(String firstName, String lastName) {
@@ -21,7 +25,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Сотрудник " + firstName + " " + lastName;
+        return "firstName=" + firstName + ", lastName=" + lastName;
     }
 
     @Override

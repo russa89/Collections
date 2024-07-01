@@ -5,6 +5,7 @@ import pro.sky.collectionEmployee.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public interface EmployeeService {
     List<Employee> employees = new ArrayList<>(List.of(
@@ -22,6 +23,5 @@ public interface EmployeeService {
 
     Employee removeEmployee(String firstName, String lastName);
 
-
-    void printAllEmployees();
+    List<Employee> getEmployees();
 }

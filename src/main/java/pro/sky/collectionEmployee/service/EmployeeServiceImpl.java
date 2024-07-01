@@ -7,7 +7,7 @@ import pro.sky.collectionEmployee.exceptions.EmployeeNotFoundException;
 import pro.sky.collectionEmployee.exceptions.EmployeeStorageIsFullException;
 import pro.sky.collectionEmployee.exceptions.exceptions.EmployeeAlreadyAddedException;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,7 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.size() > maxEmployees) {
             throw new EmployeeStorageIsFullException("Хранилище переполнено");
         }
-        employees.add(newEmployee);
         return newEmployee;
     }
 
@@ -43,11 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         } else throw new EmployeeNotFoundException("Такой сотрудник не найден");
 
     }
-
     @Override
-    public void printAllEmployees() {
-
-        System.out.println(Arrays.toString(employees.toArray()));
+    public List<Employee> getEmployees() {
+        return employees;
     }
 }
 
