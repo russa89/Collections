@@ -1,7 +1,6 @@
 package pro.sky.collectionEmployee;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Objects;
 
 public class Employee {
