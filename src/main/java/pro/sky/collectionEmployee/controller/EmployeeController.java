@@ -11,6 +11,7 @@ import pro.sky.collectionEmployee.exceptions.EmployeeStorageIsFullException;
 import pro.sky.collectionEmployee.exceptions.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.collectionEmployee.service.EmployeeServiceImpl;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -56,7 +57,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public List<Employee> printAllEmployees(){
+    public Collection<Employee> printAllEmployees(){
        return employeeServiceImpl.getEmployees();
     }
 }

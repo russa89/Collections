@@ -1,7 +1,6 @@
 package pro.sky.collectionEmployee;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Objects;
 
 public class Employee {
@@ -9,6 +8,7 @@ public class Employee {
     private String firstName;
     @JsonProperty
     private String lastName;
+
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
@@ -21,6 +21,10 @@ public class Employee {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override
@@ -41,4 +45,3 @@ public class Employee {
         return Objects.hash(firstName, lastName);
     }
 }
-
