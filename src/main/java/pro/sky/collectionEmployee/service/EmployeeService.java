@@ -3,17 +3,16 @@ package pro.sky.collectionEmployee.service;
 import org.springframework.stereotype.Service;
 import pro.sky.collectionEmployee.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public interface EmployeeService {
-    List<Employee> employees = new ArrayList<>(List.of(
-            new Employee("Ivan", "Ivanov"),
-            new Employee("Semen", "Semenov"),
-            new Employee("Petr", "Petrov"),
-            new Employee("Fedor", "Fedorov")
-    ));
+    Map<Integer, Employee> employees = new HashMap<>(Map.of(
+            1, new Employee("Ivan", "Ivanov"),
+            2, new Employee("Semen", "Semenov"),
+            3, new Employee("Petr", "Petrov"),
+            4, new Employee("Fedor", "Fedorov")));
+
     int maxEmployees = 7;
 
 
@@ -23,5 +22,5 @@ public interface EmployeeService {
 
     Employee removeEmployee(String firstName, String lastName);
 
-    List<Employee> getEmployees();
+    Collection<Employee> getEmployees();
 }
