@@ -26,9 +26,11 @@ public class EmployeeController {
 
     @GetMapping("/add")
     public String addEmployee(@RequestParam("firstName") String firstName,
-                              @RequestParam("lastName") String lastName) {
+                              @RequestParam("lastName") String lastName,
+                              @RequestParam("department") int department,
+                              @RequestParam("salary") float salary) {
         try {
-            return String.valueOf(employeeServiceImpl.addEmployee(firstName, lastName));
+            return String.valueOf(employeeServiceImpl.addEmployee(firstName, lastName, department, salary));
         } catch (EmployeeAlreadyAddedException e) {
             return e.getMessage();
         } catch (EmployeeStorageIsFullException ex) {
