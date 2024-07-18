@@ -3,6 +3,7 @@ package pro.sky.collectionEmployee.service;
 import pro.sky.collectionEmployee.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DepartmentService {
     Employee findWorkerWithMinSalaryByDep(int department);
@@ -11,5 +12,5 @@ public interface DepartmentService {
 
     List<Employee> printAllEmployeesByDep(int department);
 
-    List<Employee> printAllEmployees();
+    Map<Integer, List<Employee>> printAllEmployees();
 }

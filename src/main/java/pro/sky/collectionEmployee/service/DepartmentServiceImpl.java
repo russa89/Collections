@@ -5,8 +5,10 @@ import pro.sky.collectionEmployee.Employee;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -21,9 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         final Optional<Employee> employee = employees
                 .stream()
                 .filter(e -> e.getDepartment() == department)
-                .max(Comparator.comparingInt(e -> (int) e.getSalary()));
+                .min(Comparator.comparingInt(e -> (int) e.getSalary()));
 
-        return employee.orElseThrow(() -> new RuntimeException("Employee with max salary in" +
+        return employee.orElseThrow(() -> new RuntimeException("Employee with min salary in" +
                 "department " + department + " is not found"));
 
     }
@@ -33,8 +35,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         Optional<Employee> employee = employees
                 .stream()
                 .filter(e -> e.getDepartment() == department)
-                .min(Comparator.comparingInt(e -> (int) e.getSalary()));
-        return employee.orElseThrow(() -> new RuntimeException("Employee with min salary in" +
+                .max(Comparator.comparingInt(e -> (int) e.getSalary()));
+        return employee.orElseThrow(() -> new RuntimeException("Employee with max salary in" +
                 "department " + department + " is not found"));
     }
 
@@ -48,11 +50,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Employee> printAllEmployees() {
+    public Map<Integer, List<Employee>> printAllEmployees() {
         return employees
                 .stream()
-                .sorted(Comparator.comparingInt(Employee::getDepartment))
-                .collect(Collectors.toList());
-
+                .collect(Collectors.groupingBy(Employee::getDepartment));
     }
 }

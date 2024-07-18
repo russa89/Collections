@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.collectionEmployee.Employee;
-import pro.sky.collectionEmployee.exceptions.EmployeeStorageIsFullException;
-import pro.sky.collectionEmployee.exceptions.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.collectionEmployee.service.DepartmentService;
 import pro.sky.collectionEmployee.service.DepartmentServiceImpl;
 import pro.sky.collectionEmployee.service.EmployeeServiceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/departments")
@@ -35,10 +34,13 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    List<Employee> printAllEmployees(@RequestParam(value = "departmentId", required = false) Integer department) {
-        return department != null
-                ? service.printAllEmployeesByDep(department)
-                : service.printAllEmployees();
+    List<Employee> printAllEmployeesByDep(@RequestParam("departmentId") int department) {
+        return service.printAllEmployeesByDep(department);
+    }
+
+    @GetMapping("/all")
+    Map<Integer, List<Employee>> printAllEmployees() {
+        return service.printAllEmployees();
     }
 
 }
