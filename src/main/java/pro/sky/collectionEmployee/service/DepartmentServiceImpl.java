@@ -27,7 +27,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         return employee.orElseThrow(() -> new RuntimeException("Employee with min salary in" +
                 "department " + department + " is not found"));
-
     }
 
     @Override
@@ -46,7 +45,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .stream()
                 .filter(e -> e.getDepartment() == department)
                 .collect(Collectors.toList());
-
     }
 
     @Override

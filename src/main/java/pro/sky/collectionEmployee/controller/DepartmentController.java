@@ -42,6 +42,4 @@ public class DepartmentController {
     Map<Integer, List<Employee>> printAllEmployees() {
         return service.printAllEmployees();
     }
-
 }
-
