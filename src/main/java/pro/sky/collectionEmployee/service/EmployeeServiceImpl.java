@@ -32,22 +32,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findEmployee(String firstName, String lastName) {
         Employee findEmployee = new Employee(firstName, lastName);
-        if (employees.contains(findEmployee)) {
-            return findEmployee;
-        }
-        throw new EmployeeNotFoundException("Такой сотрудник не найден");
+        employees.stream().findAny().orElseThrow(() -> new EmployeeNotFoundException("Такой сотрудник не найден"));
+        return findEmployee;
     }
 
     @Override
     public Employee removeEmployee(String firstName, String lastName) {
         Employee removeEmployee = new Employee(firstName, lastName);
-        if (employees.contains(removeEmployee)) {
-            return removeEmployee;
-        }
-        throw new EmployeeNotFoundException("Такой сотрудник не найден");
 
+        employees.stream().findAny().orElseThrow(() -> new EmployeeNotFoundException("Такой сотрудник не найден"));
+        return removeEmployee;
     }
-
     @Override
     public Collection<Employee> printEmployees() {
         return Collections.unmodifiableCollection(employees);

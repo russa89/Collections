@@ -11,4 +11,6 @@ public interface DepartmentService {
     List<Employee> printAllEmployeesByDep(int department);
 
     Map<Integer, List<Employee>> printAllEmployees();
+
+    Double findSumOfSalaryByDep(int department);
 }

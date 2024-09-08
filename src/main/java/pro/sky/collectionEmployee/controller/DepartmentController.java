@@ -1,10 +1,7 @@
 package pro.sky.collectionEmployee.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import pro.sky.collectionEmployee.Employee;
 import pro.sky.collectionEmployee.service.DepartmentService;
 import pro.sky.collectionEmployee.service.DepartmentServiceImpl;
@@ -23,23 +20,31 @@ public class DepartmentController {
         this.service = service;
     }
 
-    @GetMapping("/max-salary")
-    public Employee findWorkerWithMaxSalaryByDep(@RequestParam("departmentId") int department) {
+    @GetMapping("/{id}/salary/max")
+    public Employee findWorkerWithMaxSalaryByDep(@PathVariable("department") int department) {
         return service.findWorkerWithMaxSalaryByDep(department);
     }
 
-    @GetMapping("/min-salary")
-    public Employee findWorkerWithMinSalaryByDep(@RequestParam("departmentId") int department) {
+    @GetMapping("/{id}/salary/min")
+    public Employee findWorkerWithMinSalaryByDep(@PathVariable("department") int department) {
         return service.findWorkerWithMinSalaryByDep(department);
     }
 
-    @GetMapping("/all")
-    List<Employee> printAllEmployeesByDep(@RequestParam("departmentId") int department) {
+    @GetMapping("/{id}/employees")
+    List<Employee> printAllEmployeesByDep(@PathVariable("department") int department) {
         return service.printAllEmployeesByDep(department);
     }
 
-    @GetMapping("/all-by-departments")
+    @GetMapping("/employees")
     Map<Integer, List<Employee>> printAllEmployees() {
         return service.printAllEmployees();
     }
+//
+//    GET http://localhost:8080/department/{id}/salary/sum
+//            — возвращает сумму зарплат по департаменту.
+
+
+
+
+
 }

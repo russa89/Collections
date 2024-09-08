@@ -12,15 +12,15 @@ import java.util.stream.Collectors;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final List<Employee> employees;
+    private final EmployeeService employeeService;
 
     public DepartmentServiceImpl(EmployeeService employeeService) {
-        this.employees = (List<Employee>) employeeService.getEmployees();
+        this.employeeService = employeeService;
     }
 
     @Override
     public Employee findWorkerWithMinSalaryByDep(int department) {
-        final Optional<Employee> employee = employees
+        final Optional<Employee> employee = employeeService.getEmployees()
                 .stream()
                 .filter(e -> e.getDepartment() == department)
                 .min(Comparator.comparingInt(e -> (int) e.getSalary()));
@@ -31,7 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Employee findWorkerWithMaxSalaryByDep(int department) {
-        Optional<Employee> employee = employees
+        Optional<Employee> employee = employeeService.getEmployees()
                 .stream()
                 .filter(e -> e.getDepartment() == department)
                 .max(Comparator.comparingInt(e -> (int) e.getSalary()));
@@ -41,7 +41,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Employee> printAllEmployeesByDep(int department) {
-        return employees
+        return employeeService.getEmployees()
                 .stream()
                 .filter(e -> e.getDepartment() == department)
                 .collect(Collectors.toList());
@@ -49,8 +49,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Map<Integer, List<Employee>> printAllEmployees() {
-        return employees
+        return employeeService.getEmployees()
                 .stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
+    }
+
+    @Override
+    public Double findSumOfSalaryByDep(int department) {
+        return employeeService.getEmployees()
+                .stream()
+                .filter(e -> e.getDepartment() == department)
+                .mapToDouble(Employee::getSalary)
+                .sum();
     }
 }
